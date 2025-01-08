@@ -56,12 +56,12 @@ const removeOnClick = (ele) => {
   }).then((result) => {
     if (result.isConfirmed) {
       let getIndex = todoArray.findIndex((todo) => todo.todoId === removeId);
-      todoArray.splice(getIndex, 1);
+     let removedObj = todoArray.splice(getIndex, 1);
       localStorage.setItem("todoArray", JSON.stringify(todoArray));
       ele.closest("li").remove();
       Swal.fire({
         title: "Deleted!",
-        text: "Your file has been deleted.",
+        text: `The Todo item '${removedObj.todoItem}' has been removed successfully.`,
         icon: "success",
       });
     }
@@ -120,8 +120,8 @@ const submitFormOnClick = (eve) => {
   Swal.fire({
     position: "center",
     icon: "success",
-    title: "Your work has been saved",
-    showConfirmButton: false,
+    title: `The new Todo item '${newObj.todoItem}' has been created successfully.`,
+    showConfirmButton: true,
     timer: 1500,
   });
 };
@@ -144,8 +144,8 @@ const onClickUpdateTodo = () => {
   Swal.fire({
     position: "center",
     icon: "success",
-    title: "Your work has been saved",
-    showConfirmButton: false,
+    title: `The Todo item '${updatedObj.todoItem}' has been updated successfully.`,
+    showConfirmButton: true,
     timer: 1500,
   });
 };
